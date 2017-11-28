@@ -4,6 +4,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ById;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -120,7 +121,15 @@ public class TesteCampoTreinamento {
 		    //driver.quit();   
 		}
 	   
-	   
-	   
+	   @Test
+		public void testeIntegarircomBotoes(){
+			
+			WebDriver driver = new FirefoxDriver();
+			driver.manage().window().setSize(new Dimension(1200, 765));
+			driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+			WebElement botao =   driver.findElement(By.id("buttonSimple"));
+			botao.click();
+			Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+	   }
 	   
 }
