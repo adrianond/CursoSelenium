@@ -2,6 +2,7 @@ package br.com.teste.campo.treinamento;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ById;
@@ -132,4 +133,44 @@ public class TesteCampoTreinamento {
 			Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 	   }
 	   
+	   @Test
+		public void testeIntegarircomLinks(){
+			
+			WebDriver driver = new FirefoxDriver();
+			driver.manage().window().setSize(new Dimension(1200, 765));
+			driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+			
+			driver.findElement(By.linkText("Voltar")).click();
+			
+			//Pega o texto da pagina, texto que aparece após clicar no link "Voltar"
+			Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
+			driver.quit();
+			
+	   }
+	   
+	   @Test
+	   public void deveBuscarTextoNaPagina(){
+			
+			WebDriver driver = new FirefoxDriver();
+			driver.manage().window().setSize(new Dimension(1200, 765));
+			driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+			
+			/**
+			 * Não é a melhor forma, pois corre todo corpo da pagina para pegar o texto especifico
+			 */
+			//Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
+			
+			/**
+			 * Pega o texto especifico contido apenas na tag h3
+			 */
+			//Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
+			
+			/**
+			 * Pega o texto na tela contido em um elemento que contém a class "facilAchar"
+			 */
+			String texto = driver.findElement(By.className("facilAchar")).getText();
+			Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
+			System.out.println(texto);
+			
+	   }
 }
