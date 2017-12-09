@@ -4,6 +4,8 @@ public class OutraClasseTesteGit {
 	
 	public static void main(String[] args) {
 		
+		System.out.println("teste de merge desenv - master");
+		
 	}
 
 }
