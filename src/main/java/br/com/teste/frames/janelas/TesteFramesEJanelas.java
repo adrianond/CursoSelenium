@@ -1,4 +1,4 @@
-package br.com.teste.campo.treinamento;
+package br.com.teste.frames.janelas;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -9,18 +9,26 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.By.ById;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import br.com.teste.dsl.DSL;
 
 
 public class TesteFramesEJanelas {
 	
-	WebDriver driver = new FirefoxDriver();
+	WebDriver driver = null;
+	DSL dsl = null;
 	
 	@Before
 	public void inicializa(){
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		driver =  new ChromeDriver();
+		//driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
 	}
 	
 	@After
@@ -31,42 +39,43 @@ public class TesteFramesEJanelas {
 	@Test
 	public void deveIntegarirFrames(){
 		//identifica um frame
-		driver.switchTo().frame("frame1");
-		driver.findElement(By.id("frameButton")).click();
+		dsl.recuperarFrame("frame1");
+		dsl.clickButton("frameButton");
 		
 		//pega a msg do alert
-		Alert alert = driver.switchTo().alert();
+		Alert alert = dsl.clickBotaoAlert();
 		String msg = alert.getText();
 		Assert.assertEquals("Frame OK!", msg);
 		//fecha o alert
 		alert.accept();
 		
 		//tira o foco do frame e o volta para pagina principal
-		driver.switchTo().defaultContent();
-		
-		driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);
+		dsl.retiraFocoFrame();
+		dsl.escreve("elementosForm:nome", msg);
 	}
 
 	@Test
 	public void deveIntegarirJanelas(){
 		//clica no botao para abrir a janela
-		driver.findElement(By.id("buttonPopUpEasy")).click();
+		dsl.clickButton("buttonPopUpEasy");
 		//troca o foco para o pouoUp utilizando o atributo name
-		driver.switchTo().window("Popup");
+		dsl.inserirFocoPoupup("Popup");
 		//escreve o textarea da janela que abre
-		driver.findElement(By.tagName("textarea")).sendKeys("deu certo?");
+		dsl.escreve("textarea", "deu certo?");
+		dsl.escreve(By.tagName("textarea"), "deu certo?");
+		
 		//fecha o poupUp
 		driver.close();
-		//volta o foco para panela pricipal que não possui titulo
+		//volta o foco para panela principal que não possui titulo
 		driver.switchTo().window("");
 		//escreve o textarea da janela principal
-		driver.findElement(By.tagName("textarea")).sendKeys("e agora?");
+		dsl.escreve(By.tagName("textarea"), "e agora?");
 	}
 	
 	@Test
 	public void deveIntegarirJanelasSemTitulo(){
 		//clica no botao para abrir a janela
-		driver.findElement(By.id("buttonPopUpHard")).click();
+		dsl.clickButton("buttonPopUpHard");
 		//imprime um identificador da janela atual
 		System.out.println(driver.getWindowHandle());
 		//imprime os identificadores de todas janelas (lista de janelas existentes)
@@ -74,10 +83,26 @@ public class TesteFramesEJanelas {
 		
 		//troca o foco para janela que abre
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
-		driver.findElement(By.tagName("textarea")).sendKeys("deu certo?");
+		dsl.escreve(By.tagName("textarea"), "deu certo?");
 		//troca o foco para janela principal
 		//driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
 		//escreve o textarea da janela principal
 		//driver.findElement(By.tagName("textarea")).sendKeys("e agora?");
    }
+	
+	@Test
+	public void deveIntegarirComFrameEscondido() {
+		// pega o elemento : frame
+		WebElement frame = dsl.getElementById("frame2");
+		// realiza o scroll na tela:O primeiro parametro (0) é o eixo 'X' = horizontal,
+		//o segundo parametro é o um argumento para o eixo y = vertical
+		// isso para não passar o valor do eixo 'Y' fixo, logo eixo 'Y' =
+		// frame.getLocation().y
+		dsl.executarJS("window.scrollBy(0, arguments[0])", frame.getLocation().y);
+		dsl.recuperarFrame("frame2");
+		dsl.clickButton("frameButton");
+		Alert alert = dsl.clickBotaoAlert();
+		String msg = alert.getText();
+		Assert.assertEquals("Frame OK!", msg);
+	}
 }

@@ -14,8 +14,9 @@ import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import br.com.teste.campo.treinamento.DSL;
-import br.com.teste.campo.treinamento.TesteCadastroPage;
+
+import br.com.teste.cadastro.TesteCadastroPage;
+import br.com.teste.dsl.DSL;
 
 @RunWith(Parameterized.class)
 public class TesteRegrasCadastro {

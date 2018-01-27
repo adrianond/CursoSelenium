@@ -5,8 +5,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import br.com.teste.campo.treinamento.TesteCampoTreinamento;
-import br.com.teste.campo.treinamento.ValidarCampos;
 import br.com.teste.regras.cadastro.TesteRegrasCadastro;
+import br.com.teste.validar.campos.ValidarCampos;
 
 @RunWith(Suite.class)
 @SuiteClasses({

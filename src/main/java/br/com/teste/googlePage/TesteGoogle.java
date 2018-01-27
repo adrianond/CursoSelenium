@@ -1,6 +1,7 @@
 package br.com.teste.googlePage;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.theories.suppliers.TestedOn;
@@ -12,8 +13,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import br.com.teste.campo.treinamento.DSL;
-import junit.framework.Assert;
+import br.com.teste.dsl.DSL;
+
 
 public class TesteGoogle {
 	
@@ -23,12 +24,12 @@ public class TesteGoogle {
 		
 		//senão colocar o driver no driver do S.O
 		//System.setProperty("webdriver.gecko.driver", "C:\adriano\libs\driverBrowserSelenium/geckodriver.exe");
-		WebDriver driver =  new FirefoxDriver();
+		//WebDriver driver =  new FirefoxDriver();
 			
 		//WebDriver driver =  new InternetExplorerDriver();
 		
-		//System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
-		//WebDriver driver =  new ChromeDriver();
+		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		WebDriver driver =  new ChromeDriver();
 		
 		//posição do browser
 		//driver.manage().window().setPosition(new Point(100, 100));

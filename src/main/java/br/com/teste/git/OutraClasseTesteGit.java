@@ -1,4 +1,4 @@
-package br.com.teste.campo.treinamento;
+package br.com.teste.git;
 
 public class OutraClasseTesteGit {
 	

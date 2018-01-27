@@ -1,4 +1,4 @@
-package br.com.teste.campo.treinamento;
+package br.com.teste.alert;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import br.com.teste.dsl.DSL;
 
 public class TestAlert {
 	

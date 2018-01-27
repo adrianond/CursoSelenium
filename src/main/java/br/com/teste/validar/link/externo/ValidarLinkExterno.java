@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import br.com.teste.campo.treinamento.DSL;
+import br.com.teste.dsl.DSL;
 
 public class ValidarLinkExterno {
 	

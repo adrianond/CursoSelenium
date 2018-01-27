@@ -1,9 +1,10 @@
-package br.com.teste.campo.treinamento;
+package br.com.teste.dsl;
 
 import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -222,9 +223,121 @@ public class DSL {
 	/**
 	 * @return
 	 */
-	public Alert recuperarAlert(){
-		return driver.switchTo().alert();
+	public void clicarBotaoAlert(){
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
+	}
+	
+	/**
+	 * @return
+	 */
+	public Alert clickBotaoAlert(){
+		return  driver.switchTo().alert();
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public WebElement getElementById(String id){
+		return driver.findElement(By.id(id));
+	}
+	
+	/****** JAVASCRIPT INI********/
+	
+	public Object executarJS(String comando, Object... param){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		// js.executeScript("alert('Testando js via Selenium')");
+		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escrito via JS'");
+		//js.executeScript("document.getElementById('elementosForm:sobreNome').type = 'radio'");
+		return js.executeScript(comando, param);
+	}
+	
+	/****** JAVASCRIPT FIM ********/
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public void recuperarFrame(String id){
+		driver.switchTo().frame(id);
 	}
 
+	/**
+	 * 
+	 */
+	public void retiraFocoFrame() {
+		driver.switchTo().defaultContent();
+	}
+
+	/**
+	 * 
+	 * @param name
+	 */
+	public void inserirFocoPoupup(String name) {
+		driver.switchTo().window(name);
+	}
+
+	/****** xPath inicio ********/
+	
+	/**
+	 * 
+	 * @param xPath
+	 */
+	public String recuperarTextoElementoWithXpath(String xPath) {
+		return driver.findElement(By.xpath(xPath)).getText();
+	}
+
+	/**
+	 * 
+	 * @param id_campo
+	 * @param texto
+	 */
+	public void escreveWithXpath(String xPath, String texto){
+		 driver.findElement(By.xpath(xPath)).sendKeys(texto);
+	}
+
+	/**
+	 * 
+	 * @param xPath
+	 * @return
+	 */
+	public String recuperaTextoDigitadoWithXpath(String xPath) {
+		return driver.findElement(By.xpath(xPath)).getAttribute("value");
+	}
+
+	/**
+	 * 
+	 * @param xPath
+	 */
+	public void clicarBotaoWithXpath(String xPath) {
+		driver.findElement(By.xpath(xPath)).click();
+	}
+
+	/**
+	 * 
+	 * @param xPath
+	 * @return
+	 */
+	public String obterValorAtributoValueWithXpath(String xPath) {
+	   return driver.findElement(By.xpath(xPath)).getAttribute("value");
+	}
+
+	/**
+	 * 
+	 * @param xPath
+	 */
+	public void selecionarRadioWithXpath(String xPath) {
+		driver.findElement(By.xpath(xPath)).click();
+	}
+
+	/**
+	 * 
+	 * @param xPath
+	 */
+	public void selecionarCheckBoxWithXpath(String xPath) {
+		driver.findElement(By.xpath(xPath)).click();
+	}
 	
 }

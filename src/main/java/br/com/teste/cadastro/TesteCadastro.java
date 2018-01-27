@@ -1,4 +1,4 @@
-package br.com.teste.campo.treinamento;
+package br.com.teste.cadastro;
 
 import java.util.ArrayList;
 import java.util.List;

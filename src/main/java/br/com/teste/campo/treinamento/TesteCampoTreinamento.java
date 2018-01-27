@@ -9,25 +9,31 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ById;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import br.com.teste.dsl.DSL;
+
 public class TesteCampoTreinamento {
 	
-	WebDriver driver = new FirefoxDriver();
+	WebDriver driver = null;
+	private DSL dsl = null;
 	
 	@Before
 	public void inicializa(){
+		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		//System.getProperty("user.dir") - retorna a raiz do projeto
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
 	}
 	
 	@After
 	public void encerrar(){
-		driver.quit();
+		//driver.quit();
 	}
 
 
@@ -120,5 +126,11 @@ public class TesteCampoTreinamento {
 			String texto = driver.findElement(By.className("facilAchar")).getText();
 			Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
 			System.out.println(texto);
+	   }
+	   
+	   @Test
+	   public void testeJavaScript(){
+		   WebElement elemento = dsl.getElementById("elementosForm:nome");
+		   dsl.executarJS("arguments[0].style.border = arguments[1]", elemento, "solid 4px red");
 	   }
 }

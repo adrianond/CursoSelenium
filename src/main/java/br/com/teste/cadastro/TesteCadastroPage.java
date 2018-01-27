@@ -1,4 +1,4 @@
-package br.com.teste.campo.treinamento;
+package br.com.teste.cadastro;
 
 import java.util.List;
 import org.openqa.selenium.Alert;
@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import br.com.teste.campo.treinamento.DSL;
+import br.com.teste.dsl.DSL;
 
 public class TesteCadastroPage {
 	
@@ -127,7 +127,7 @@ public class TesteCadastroPage {
 	 * @return
 	 */
 	public Alert validarAvisoAlert() {
-		return dsl.recuperarAlert();
+		return dsl.clickBotaoAlert();
 	}
 	
 	/**
