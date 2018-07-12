@@ -7,7 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 
 
@@ -18,7 +20,11 @@ public class TesteCadastro {
 	
 	@Before
 	public void inicializar(){
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		//System.setProperty("webdriver.ie.driver", "C:\\adriano\\libs\\driverBrowserSelenium/IEDriverServer.exe");
+		//driver = new FirefoxDriver();
+		//driver = new ChromeDriver();
+		driver = new InternetExplorerDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 	    page = new TesteCadastroPage(driver);

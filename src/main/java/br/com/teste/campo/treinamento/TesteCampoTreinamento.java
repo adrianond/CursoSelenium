@@ -8,6 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ById;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +25,9 @@ public class TesteCampoTreinamento {
 	
 	@Before
 	public void inicializa(){
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		//driver = new FirefoxDriver();
+		driver =  new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		//System.getProperty("user.dir") - retorna a raiz do projeto
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");

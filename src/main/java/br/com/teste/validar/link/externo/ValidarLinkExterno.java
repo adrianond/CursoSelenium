@@ -21,8 +21,9 @@ public class ValidarLinkExterno {
 	
 	@Before
 	public void inicializar(){
-		driver = new FirefoxDriver();
-		//driver =  new ChromeDriver();
+		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		//driver = new FirefoxDriver();
+		driver =  new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		//System.getProperty("user.dir") - retorna a raiz do projeto
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/validarLinkExterno.html");
