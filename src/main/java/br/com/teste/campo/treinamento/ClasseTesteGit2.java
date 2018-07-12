@@ -6,6 +6,14 @@ public class ClasseTesteGit2 {
 		System.out.println("Teste GIT");
 		System.out.println("Editada direto no github");
 		System.out.println("teste merge");
+		
+		
+		teste();
+	}
+
+	private static void teste() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
