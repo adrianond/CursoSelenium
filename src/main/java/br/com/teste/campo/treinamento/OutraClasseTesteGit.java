@@ -7,14 +7,6 @@ public class OutraClasseTesteGit {
 		System.out.println("teste de merge desenv - master");
 		System.out.println("teste de merge desenv - master 2");
 		
-		
-		ultimoCommit();
-		
-	}
-
-	private static void ultimoCommit() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
