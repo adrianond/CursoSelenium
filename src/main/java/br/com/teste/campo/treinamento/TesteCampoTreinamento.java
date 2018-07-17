@@ -25,9 +25,9 @@ public class TesteCampoTreinamento {
 	
 	@Before
 	public void inicializa(){
-		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
-		//driver = new FirefoxDriver();
-		driver =  new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
+		driver = new FirefoxDriver();
+		//driver =  new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		//System.getProperty("user.dir") - retorna a raiz do projeto
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
