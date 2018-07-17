@@ -99,7 +99,7 @@ public class TesteCampoTreinamento {
 	   
 	   @Test
 		public void testeIntegarircomBotoes(){
-			WebElement botao =   driver.findElement(By.id("buttonSimple"));
+			WebElement botao = driver.findElement(By.id("buttonSimple"));
 			botao.click();
 			Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 	   }
