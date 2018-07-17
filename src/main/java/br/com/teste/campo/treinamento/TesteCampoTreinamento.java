@@ -137,7 +137,4 @@ public class TesteCampoTreinamento {
 		   dsl.executarJS("arguments[0].style.border = arguments[1]", elemento, "solid 4px red");
 	   }
 	   
-	   public void teste_Commit(){
-		   
-	   }
 }
