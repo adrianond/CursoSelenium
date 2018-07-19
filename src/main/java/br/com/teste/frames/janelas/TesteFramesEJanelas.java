@@ -23,8 +23,8 @@ public class TesteFramesEJanelas {
 	
 	@Before
 	public void inicializa(){
-		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
-		driver =  new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
+		driver = new FirefoxDriver();
 		//driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
@@ -33,17 +33,19 @@ public class TesteFramesEJanelas {
 	
 	@After
 	public void encerrar(){
-		//driver.quit();
+		driver.quit();
 	}
 	
 	@Test
 	public void deveIntegarirFrames(){
 		//identifica um frame
 		dsl.recuperarFrame("frame1");
+		//clica no botao do frame aberto para disparar um alert
 		dsl.clickButton("frameButton");
 		
-		//pega a msg do alert
+		//muda o foco para o botao do alert
 		Alert alert = dsl.clickBotaoAlert();
+		//pega a msg do alert
 		String msg = alert.getText();
 		Assert.assertEquals("Frame OK!", msg);
 		//fecha o alert
@@ -61,13 +63,12 @@ public class TesteFramesEJanelas {
 		//troca o foco para o pouoUp utilizando o atributo name
 		dsl.inserirFocoPoupup("Popup");
 		//escreve o textarea da janela que abre
-		dsl.escreve("textarea", "deu certo?");
 		dsl.escreve(By.tagName("textarea"), "deu certo?");
 		
 		//fecha o poupUp
 		driver.close();
 		//volta o foco para panela principal que não possui titulo
-		driver.switchTo().window("");
+	    driver.switchTo().window("");
 		//escreve o textarea da janela principal
 		dsl.escreve(By.tagName("textarea"), "e agora?");
 	}
@@ -84,10 +85,14 @@ public class TesteFramesEJanelas {
 		//troca o foco para janela que abre
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
 		dsl.escreve(By.tagName("textarea"), "deu certo?");
+		
+		//fecha o poupUp
+		driver.close();
+		
 		//troca o foco para janela principal
-		//driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
+		driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
 		//escreve o textarea da janela principal
-		//driver.findElement(By.tagName("textarea")).sendKeys("e agora?");
+		driver.findElement(By.tagName("textarea")).sendKeys("e agora?");
    }
 	
 	@Test
@@ -101,7 +106,9 @@ public class TesteFramesEJanelas {
 		dsl.executarJS("window.scrollBy(0, arguments[0])", frame.getLocation().y);
 		dsl.recuperarFrame("frame2");
 		dsl.clickButton("frameButton");
+		//coloca foco no botao alert
 		Alert alert = dsl.clickBotaoAlert();
+		//pega a msg do alert
 		String msg = alert.getText();
 		Assert.assertEquals("Frame OK!", msg);
 	}
