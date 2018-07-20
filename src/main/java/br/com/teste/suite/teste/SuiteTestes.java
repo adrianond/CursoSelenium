@@ -10,7 +10,7 @@ import br.com.teste.validar.campos.ValidarCampos;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	TesteRegrasCadastro.class,
+	//TesteRegrasCadastro.class,
 	ValidarCampos.class,
 	TesteCampoTreinamento.class
 })

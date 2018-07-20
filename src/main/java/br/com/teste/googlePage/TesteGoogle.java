@@ -28,8 +28,11 @@ public class TesteGoogle {
 			
 		//WebDriver driver =  new InternetExplorerDriver();
 		
-		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
-		WebDriver driver =  new ChromeDriver();
+		/*System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		WebDriver driver =  new ChromeDriver();*/
+		
+		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
 		
 		//posição do browser
 		//driver.manage().window().setPosition(new Point(100, 100));
@@ -46,9 +49,9 @@ public class TesteGoogle {
 		dsl.clickButtonAtributeName("btnK");
 		
 		//imprime o titulo da pagina
-		//System.out.println(driver.getTitle());
+		System.out.println(driver.getTitle());
 		
-		Assert.assertEquals("Google", driver.getTitle());
+		Assert.assertEquals("java - Pesquisa Google", driver.getTitle());
 		
 		//fecha o browser(todas as abas)
 		//driver.quit();

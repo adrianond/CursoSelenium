@@ -23,7 +23,6 @@ public class TesteRegrasCadastro {
 	
 	public WebDriver driver = null;
 	public TesteCadastroPage page = null;
-	public DSL dsl = null;
 	
 	@Parameter
 	public String nome;
@@ -41,11 +40,12 @@ public class TesteRegrasCadastro {
 	
 	@Before
 	public void inicializa(){
+		//driver = new FirefoxDriver();
+		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		page = new TesteCadastroPage(driver);
-		dsl = new DSL(driver);
 	}
 	
 	@After
@@ -95,19 +95,19 @@ public class TesteRegrasCadastro {
 	
 	@Test
 	public void deveValidarRegras2(){
-		/*listaComidas.add("Frango");
-		listaComidas.add("Vegetariano");*/
+		listaComidas.add("Frango");
+		listaComidas.add("Vegetariano");
 		
-		/*listaEsporte.add("Corrida");
+		listaEsporte.add("Corrida");
 		listaEsporte.add("O que eh esporte?");
-*/		
+		
 		page.setNome(nome);
 		page.setSobreNome(sobreNome);
 		
 		if (sexo.equals("Masculino")){
 			page.setSexoMasculino();
 		} if (sexo.equals("Feminino")){
-			page.setSexoMasculino();
+			page.setSexoFeminino();
 		}
 		if (listaComidas.contains("Frango"))page.setComidaFrango();
 		if (listaComidas.contains("Vegetariano"))page.setVegetariano();
