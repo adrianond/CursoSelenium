@@ -40,7 +40,7 @@ public class TesteCampoTreinamento {
 	}
 
 
-	@Test
+	/*@Test
 	public void testeTextField(){
 		//pega o elemento input e escreve nele
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Teste de escrita");
@@ -113,19 +113,19 @@ public class TesteCampoTreinamento {
 	   
 	   @Test
 	   public void deveBuscarTextoNaPagina(){
-			/**
+			*//**
 			 * Não é a melhor forma, pois corre todo corpo da pagina para pegar o texto especifico
-			 */
+			 *//*
 			//Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
 			
-			/**
+			*//**
 			 * Pega o texto especifico contido apenas na tag h3
-			 */
+			 *//*
 			//Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
 			
-			/**
+			*//**
 			 * Pega o texto na tela contido em um elemento que contém a class "facilAchar"
-			 */
+			 *//*
 			String texto = driver.findElement(By.className("facilAchar")).getText();
 			Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
 			System.out.println(texto);
@@ -135,6 +135,13 @@ public class TesteCampoTreinamento {
 	   public void testeJavaScript(){
 		   WebElement elemento = dsl.getElementById("elementosForm:nome");
 		   dsl.executarJS("arguments[0].style.border = arguments[1]", elemento, "solid 4px red");
-	   }
+	   }*/
+	   
+	   @Test
+	  public void deveClicarBotaoTabela(){
+			//dsl.clicarBotaoTabela("Escolaridade", "Mestrado", "Radio", "elementosForm:tableUsuarios");
+			dsl.clicarBotaoTabela("Nome", "Usuario A", "Radio", "elementosForm:tableUsuarios");
+			//dsl.clicarBotaoTabela("Nome", "Maria", "Botao", "elementosForm:tableUsuarios");
+	  }
 	   
 }

@@ -199,6 +199,15 @@ public class DSL {
 	/**
 	 * 
 	 * @param id_campo
+	 * @return
+	 */
+	public String obterContentTextoByClassPath(String classPath) {
+		return driver.findElement(By.xpath(classPath)).getText();
+	}
+	
+	/**
+	 * 
+	 * @param id_campo
 	 */
 	public void clicarLink(String id_campo) {
 		driver.findElement(By.id(id_campo)).click();
@@ -338,6 +347,152 @@ public class DSL {
 	 */
 	public void selecionarCheckBoxWithXpath(String xPath) {
 		driver.findElement(By.xpath(xPath)).click();
+	}
+	
+	/**
+	 * 
+	 * @param by
+	 */
+	public void clicarRadio(By by) {
+		driver.findElement(by).click();
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean isRadioMarcado(String id){
+		return driver.findElement(By.id(id)).isSelected();
+	}
+	
+	/**
+	 * 
+	 * @param by
+	 * @return
+	 */
+	public String obterTexto(By by) {
+		return driver.findElement(by).getText();
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public String obterTexto(String id) {
+		return obterTexto(By.id(id));
+	}
+    /************** Tabela Inicio*********************/
+	
+	/**
+	 * 
+	 * @param colunaBusca
+	 * @param valor
+	 * @param colunaBotao
+	 * @param idTabela
+	 */
+	public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela){
+		//procurar coluna do registro
+		WebElement tabela = driver.findElement(By.xpath("//*[@id='"+idTabela+"']"));
+		
+		int idColuna = obterIndiceColuna(colunaBusca, tabela);
+		
+		//encontrar a linha do registro
+		int idLinha = obterIndiceLinha(valor, tabela, idColuna);
+		
+		//procurar coluna do botao/elemento que desejo
+		int idColunaElemento = obterIndiceColuna(colunaBotao, tabela);
+		
+		//clicar no botao da celula encontrada
+		WebElement celula = tabela.findElement(By.xpath(".//tr["+idLinha+"]/td["+idColunaElemento+"]"));
+		celula.findElement(By.xpath(".//input")).click();
+		
+	}
+	
+	/**
+	 * 
+	 * @param valor
+	 * @param tabela
+	 * @param idColuna
+	 * @return
+	 */
+	protected int obterIndiceLinha(String valor, WebElement tabela, int idColuna) {
+		List<WebElement> linhas = tabela.findElements(By.xpath("./tbody/tr/td["+idColuna+"]"));
+		int idLinha = -1;
+		for(int i = 0; i < linhas.size(); i++) {
+			if(linhas.get(i).getText().equals(valor)) {
+				idLinha = i+1;
+				break;
+			}
+		}
+		System.out.println(" Indice da linha " + idLinha);
+		return idLinha;
+	}
+	
+    /**
+     * Vai até um ID, sobe dois niveis e clica em um span
+     * @param radical
+     * @param valor
+     */
+	public void selecionarComboPrime(String radical, String valor) {
+		clicarRadio(By.xpath("//*[@id='"+radical+"_input']/../..//span"));
+		clicarRadio(By.xpath("//*[@id='"+radical+"_items']//li[.='"+valor+"']"));
+	}
+
+	/**
+	 * 
+	 * @param coluna
+	 * @param tabela
+	 * @return
+	 */
+	protected int obterIndiceColuna(String coluna, WebElement tabela) {
+		////traz todos os registros -  tabela.findElements
+		// usa o ponto no inicio do classPath (.//th) para continuar do escopo
+		//no qual me encontro, ou seja, no escopo do componente, neste caso a tabela ,pois quero os titulos da tabela (classPath absoluto)
+		List<WebElement> colunas = tabela.findElements(By.xpath(".//th"));
+		int idColuna = -1;
+		for(int i = 0; i < colunas.size(); i++) {
+			if(colunas.get(i).getText().equals(coluna)) {
+				idColuna = i+1;
+				break;
+			}
+		}
+		System.out.println("Indice  da coluna " + idColuna);
+		return idColuna;
+	}
+	
+	 /************** Tabela Fim*********************/
+	
+     /********* Botao ************/
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public void clicarBotao(String id) {
+		driver.findElement(By.id(id)).click();
+	}
+	
+    /********* TextField e TextArea ************/
+	
+	/**
+	 * 
+	 * @param by
+	 * @param texto
+	 */
+	public void escrever(By by, String texto){
+		driver.findElement(by).clear();
+		driver.findElement(by).sendKeys(texto);
+	}
+	
+	/**
+	 * 
+	 * @param id_campo
+	 * @param texto
+	 */
+	public void escrever(String id_campo, String texto){
+		escrever(By.id(id_campo), texto);
 	}
 	
 }

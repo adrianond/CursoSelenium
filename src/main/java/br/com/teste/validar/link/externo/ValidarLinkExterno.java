@@ -21,9 +21,10 @@ public class ValidarLinkExterno {
 	
 	@Before
 	public void inicializar(){
-		System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
-		//driver = new FirefoxDriver();
-		driver =  new ChromeDriver();
+		//System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		//driver =  new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
+		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		//System.getProperty("user.dir") - retorna a raiz do projeto
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/validarLinkExterno.html");
@@ -53,9 +54,9 @@ public class ValidarLinkExterno {
 		//driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
 		dsl.escreve("lst-ib", "java");
 		//driver.findElement(By.xpath("//input[@name='btnK']")).click();
-		dsl.recuperarBotao2("input", "name", "btnK");
+		//dsl.recuperarBotao2("input", "name", "btnK");
 		//dsl.recuperarBotao("input", "name", "btnK");
-		//dsl.recuperarButton("input", "name", "btnK").click();
+		dsl.recuperarButton("input", "name", "btnK");
 		//dsl.clickButtonAtributeName("btnK");
 		
 		// Feche a nova janela, se essa janela não for mais necessária

@@ -46,7 +46,9 @@ public class TesteCadastro {
 		page.setEsporte(listaEsporte);
 		page.cadastrar();
 		
-		Assert.assertTrue(page.obterNome().contains("adriano"));
+		//Assert.assertTrue(page.obterNome().contains("adriano"));
+		Assert.assertEquals("adriano", page.obterNomeByClassPath());
+		
 	}
 }
 

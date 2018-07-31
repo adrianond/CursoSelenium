@@ -107,6 +107,14 @@ public class TesteCadastroPage {
 	}
 	
 	/**
+	 * @return 
+	 * 
+	 */
+	public String obterNomeByClassPath(){
+		return dsl.obterContentTextoByClassPath("//*[@id='descNome']/span");
+	}
+	
+	/**
 	 * 
 	 * @return
 	 */
