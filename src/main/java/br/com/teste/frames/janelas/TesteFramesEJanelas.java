@@ -6,34 +6,25 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ById;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.teste.dsl.DSL;
+import br.com.teste.core.DSL;
+import br.com.teste.core.DriverFactory;
 
 
 public class TesteFramesEJanelas {
 	
-	WebDriver driver = null;
 	DSL dsl = null;
 	
 	@Before
 	public void inicializa(){
-		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
-		driver = new FirefoxDriver();
-		//driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	
 	@After
 	public void encerrar(){
-		driver.quit();
+		DriverFactory.killDriver();
 	}
 	
 	@Test
@@ -66,9 +57,9 @@ public class TesteFramesEJanelas {
 		dsl.escreve(By.tagName("textarea"), "deu certo?");
 		
 		//fecha o poupUp
-		driver.close();
+		DriverFactory.getDriver().close();
 		//volta o foco para panela principal que não possui titulo
-	    driver.switchTo().window("");
+	    DriverFactory.getDriver().switchTo().window("");
 		//escreve o textarea da janela principal
 		dsl.escreve(By.tagName("textarea"), "e agora?");
 	}
@@ -78,21 +69,21 @@ public class TesteFramesEJanelas {
 		//clica no botao para abrir a janela
 		dsl.clickButton("buttonPopUpHard");
 		//imprime um identificador da janela atual
-		System.out.println(driver.getWindowHandle());
+		System.out.println(DriverFactory.getDriver().getWindowHandle());
 		//imprime os identificadores de todas janelas (lista de janelas existentes)
-		System.out.println(driver.getWindowHandles());
+		System.out.println(DriverFactory.getDriver().getWindowHandles());
 		
 		//troca o foco para janela que abre
-		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
+		DriverFactory.getDriver().switchTo().window((String)DriverFactory.getDriver().getWindowHandles().toArray()[1]);
 		dsl.escreve(By.tagName("textarea"), "deu certo?");
 		
 		//fecha o poupUp
-		driver.close();
+		DriverFactory.getDriver().close();
 		
 		//troca o foco para janela principal
-		driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
+		DriverFactory.getDriver().switchTo().window((String)DriverFactory.getDriver().getWindowHandles().toArray()[0]);
 		//escreve o textarea da janela principal
-		driver.findElement(By.tagName("textarea")).sendKeys("e agora?");
+		DriverFactory.getDriver().findElement(By.tagName("textarea")).sendKeys("e agora?");
    }
 	
 	@Test

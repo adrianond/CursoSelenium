@@ -1,15 +1,13 @@
 package br.com.teste.xpath;
 
-import org.openqa.selenium.WebDriver;
-
-import br.com.teste.dsl.DSL;
+import br.com.teste.core.DSL;
 
 public class DesafioTestePage {
 
 	private DSL dsl = null;
 
-	public DesafioTestePage(WebDriver driver) {
-		dsl = new DSL(driver);
+	public DesafioTestePage() {
+		dsl = new DSL();
 	}
 
 	/**

@@ -1,19 +1,19 @@
 package br.com.teste.cadastro;
 
 import java.util.List;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import br.com.teste.dsl.DSL;
+import br.com.teste.core.DSL;
 
 public class TesteCadastroPage {
 	
 	private DSL dsl;
 	
-	public TesteCadastroPage(WebDriver driver){
-		dsl = new DSL(driver);
+	public TesteCadastroPage(){
+		dsl = new DSL();
 	}
 	
 	/**

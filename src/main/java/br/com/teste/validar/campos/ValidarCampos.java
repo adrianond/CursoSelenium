@@ -2,39 +2,31 @@ package br.com.teste.validar.campos;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import br.com.teste.cadastro.TesteCadastroPage;
+import br.com.teste.core.DriverFactory;
 
 public class ValidarCampos {
 	
-	private WebDriver driver = null;
 	TesteCadastroPage page = null;
 	
 	@Before
 	public void inicializa(){
-		//System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
-		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
-		driver = new FirefoxDriver();
-		//driver =  new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		page = new TesteCadastroPage(driver);
+		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		page = new TesteCadastroPage();
 	}
 	
 	@After
 	public void encerrar(){
-		//driver.quit();
+		DriverFactory.killDriver();
 	}
 
 	@Test

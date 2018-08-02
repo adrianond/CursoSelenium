@@ -5,25 +5,18 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.teste.dsl.DSL;
+import br.com.teste.core.DSL;
+import br.com.teste.core.DriverFactory;
 
 public class TestAlert {
 	
-	private WebDriver driver = null;
 	private DSL dsl = null;
 	
 	@Before
 	public void inicializar(){
-		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	
 	@After
@@ -37,7 +30,7 @@ public class TestAlert {
 		dsl.clickButton("alert");
 		
 		//pega o evento externo a pagina, ou seja, o alert
-		Alert alert = driver.switchTo().alert();
+		Alert alert = DriverFactory.getDriver().switchTo().alert();
 		
 		String texto = alert.getText();
 		Assert.assertEquals("Alert Simples", texto);

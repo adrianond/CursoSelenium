@@ -1,19 +1,13 @@
 package br.com.teste.googlePage;
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import br.com.teste.dsl.DSL;
+import br.com.teste.browser.EnumBrowser;
+import br.com.teste.core.DSL;
+import br.com.teste.core.DriverFactory;
 
 
 public class TesteGoogle {
@@ -23,38 +17,36 @@ public class TesteGoogle {
 	public void teste() {
 		
 		//senão colocar o driver no driver do S.O
-		//System.setProperty("webdriver.gecko.driver", "C:\adriano\libs\driverBrowserSelenium/geckodriver.exe");
+		//System.setProperty("webDriverFactory.getDriver().gecko.driver", "C:\adriano\libs\driverBrowserSelenium/geckoDriverFactory.getDriver().exe");
 		//WebDriver driver =  new FirefoxDriver();
 			
 		//WebDriver driver =  new InternetExplorerDriver();
 		
-		/*System.setProperty("webdriver.chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromedriver.exe");
+		/*System.setProperty("webDriverFactory.getDriver().chrome.driver", "C:\\adriano\\libs\\driverBrowserSelenium/chromeDriverFactory.getDriver().exe");
 		WebDriver driver =  new ChromeDriver();*/
 		
-		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
-		WebDriver driver = new FirefoxDriver();
 		
 		//posição do browser
-		//driver.manage().window().setPosition(new Point(100, 100));
+		//DriverFactory.getDriver().manage().window().setPosition(new Point(100, 100));
 		
 		//tamanho do browser
-		driver.manage().window().setSize(new Dimension(1200, 765));
+		DriverFactory.getDriver(EnumBrowser.FIREFOX).manage().window().setSize(new Dimension(1200, 765));
 		
 		//acessa(abre) a pagina do google
-		driver.get("http://www.google.com");
+		DriverFactory.getDriver().get("http://www.google.com");
 		
-		DSL dsl = new DSL(driver);
+		DSL dsl = new DSL();
 		
 		dsl.escreve("lst-ib", "java");
 		dsl.clickButtonAtributeName("btnK");
 		
 		//imprime o titulo da pagina
-		System.out.println(driver.getTitle());
+		System.out.println(DriverFactory.getDriver().getTitle());
 		
-		Assert.assertEquals("java - Pesquisa Google", driver.getTitle());
+		Assert.assertEquals("java - Pesquisa Google", DriverFactory.getDriver().getTitle());
 		
 		//fecha o browser(todas as abas)
-		//driver.quit();
+		DriverFactory.killDriver();
 	}
 
 }

@@ -1,22 +1,12 @@
 package br.com.teste.campo.treinamento;
-import java.util.List;
-
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.By.ById;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
-import br.com.teste.dsl.DSL;
+import br.com.teste.browser.EnumBrowser;
+import br.com.teste.core.DSL;
+import br.com.teste.core.DriverFactory;
 
 public class TesteCampoTreinamento {
 	
@@ -25,18 +15,14 @@ public class TesteCampoTreinamento {
 	
 	@Before
 	public void inicializa(){
-		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
-		driver = new FirefoxDriver();
-		//driver =  new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
 		//System.getProperty("user.dir") - retorna a raiz do projeto
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	
 	@After
 	public void encerrar(){
-		//driver.quit();
+		DriverFactory.killDriver();
 	}
 
 

@@ -1,28 +1,16 @@
-package br.com.teste.dsl;
+package br.com.teste.core;
 
 import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import br.com.teste.validar.link.externo.GerarEventos;
-import br.com.teste.validar.link.externo.GerarEventos;
 
 public class DSL {
-	
-	private WebDriver driver = null;
-	
-	/**
-	 * 
-	 * @param driver
-	 */
-	public DSL(WebDriver driver){
-	  this.driver = driver;
-	}
 	
 	/**
 	 * 
@@ -30,7 +18,7 @@ public class DSL {
 	 * @param texto
 	 */
 	public void escreve(String id_campo, String texto){
-		driver.findElement(By.id(id_campo)).sendKeys(texto);
+		DriverFactory.getDriver().findElement(By.id(id_campo)).sendKeys(texto);
 	}
 	
 	/**
@@ -41,21 +29,21 @@ public class DSL {
 	public void recuperarBotao2(String componente, String atributo, String valorAtributo){
 		
 		if (atributo.equals("id")) {
-			driver.findElement(By.id(valorAtributo)).click();
+			DriverFactory.getDriver().findElement(By.id(valorAtributo)).click();
 		} else if (atributo.equals("name")) {
-			driver.findElement(By.name(valorAtributo)).click();
+			DriverFactory.getDriver().findElement(By.name(valorAtributo)).click();
 		} else if (atributo.equals("className")) {
-			driver.findElement(By.className(valorAtributo)).click();
+			DriverFactory.getDriver().findElement(By.className(valorAtributo)).click();
 		} else if (atributo.equals("cssSelector")) {
-			driver.findElement(By.cssSelector(valorAtributo)).click();
+			DriverFactory.getDriver().findElement(By.cssSelector(valorAtributo)).click();
 		} else if (atributo.equals("tagName")) {
-			driver.findElement(By.tagName(valorAtributo)).click();
+			DriverFactory.getDriver().findElement(By.tagName(valorAtributo)).click();
 		} else {
 			String component = "//".concat(componente);
 			String attribute = "[@".concat(atributo).concat("=");
 			String valueAttribute = "\'"+valorAtributo+"\'".concat("]");
 			String xpath = component.concat(attribute).concat(valueAttribute);
-			driver.findElement(By.xpath(xpath)).click();
+			DriverFactory.getDriver().findElement(By.xpath(xpath)).click();
 		} 
 	}
 	
@@ -70,7 +58,7 @@ public class DSL {
 		String attribute = "[@".concat(atributo).concat("=");
 		String valueAttribute = "\'"+valueAtributo+"\'".concat("]");
 		String xpath = component.concat(attribute).concat(valueAttribute);
-		driver.findElement(By.xpath(xpath)).click();
+		DriverFactory.getDriver().findElement(By.xpath(xpath)).click();
 	}
 	
 	/**
@@ -79,8 +67,8 @@ public class DSL {
 	 * @param texto
 	 */
 	public void escreve(By by, String texto){
-		driver.findElement(by).clear();
-		driver.findElement(by).sendKeys(texto);
+		DriverFactory.getDriver().findElement(by).clear();
+		DriverFactory.getDriver().findElement(by).sendKeys(texto);
 	}
 	
 	/**
@@ -90,7 +78,7 @@ public class DSL {
 	 * @return
 	 */
 	public String obterValorCampo(String id_campo){
-		return driver.findElement(By.id(id_campo)).getAttribute("value");
+		return DriverFactory.getDriver().findElement(By.id(id_campo)).getAttribute("value");
 	}
 	
 	/**
@@ -98,7 +86,7 @@ public class DSL {
 	 * @param id_campo
 	 */
 	public void clickButton(String id_campo){
-		driver.findElement(By.id(id_campo)).click();
+		DriverFactory.getDriver().findElement(By.id(id_campo)).click();
 	}
 	
 	/**
@@ -106,7 +94,7 @@ public class DSL {
 	 * @param atributeName
 	 */
 	public void clickButtonAtributeName(String atributeName){
-		driver.findElement(By.name(atributeName)).click();
+		DriverFactory.getDriver().findElement(By.name(atributeName)).click();
 	}
 	
 	
@@ -115,7 +103,7 @@ public class DSL {
 	 * @param id_campo
 	 */
 	public void selecionarRadio(String id_campo){
-		driver.findElement(By.id(id_campo)).click();
+		DriverFactory.getDriver().findElement(By.id(id_campo)).click();
 	}
 
 	/**
@@ -123,7 +111,7 @@ public class DSL {
 	 * @param id_campo
 	 */
 	public void selecionarCheckBox(String id_campo){
-		driver.findElement(By.id(id_campo)).click();
+		DriverFactory.getDriver().findElement(By.id(id_campo)).click();
 	}
 
 	/**
@@ -132,7 +120,7 @@ public class DSL {
 	 * @return
 	 */
 	public boolean isCheckBoxSelecionado(String id_campo) {
-		return driver.findElement(By.id(id_campo)).isSelected();
+		return DriverFactory.getDriver().findElement(By.id(id_campo)).isSelected();
 		
 	}
 
@@ -143,7 +131,7 @@ public class DSL {
 	 * @return
 	 */
 	public Select  recuperaItensSelecionadosCombo(String id_campo, List<String> lista) {
-		WebElement element =  driver.findElement(By.id(id_campo));
+		WebElement element =  DriverFactory.getDriver().findElement(By.id(id_campo));
 		Select combo = new Select(element);
 		for (String textContent :  lista){
 			combo.selectByVisibleText(textContent);
@@ -158,7 +146,7 @@ public class DSL {
 	 * @return
 	 */
 	public void  selecionarValuesComboByTextContent(String id_campo, List<String> lista) {
-		WebElement element =  driver.findElement(By.id(id_campo));
+		WebElement element =  DriverFactory.getDriver().findElement(By.id(id_campo));
 		Select combo = new Select(element);
 		for (String textContent :  lista){
 			combo.selectByVisibleText(textContent);
@@ -166,7 +154,7 @@ public class DSL {
 	}
 
 	public void selecionarValuesComboByValue(String id_campo, List<String> lista) {
-		WebElement element =  driver.findElement(By.id(id_campo));
+		WebElement element =  DriverFactory.getDriver().findElement(By.id(id_campo));
 		Select combo = new Select(element);
 		for (String value :  lista){
 			combo.selectByValue(value);
@@ -180,7 +168,7 @@ public class DSL {
 	 * @return
 	 */
 	public void tirarSelecaoValuesComboByTextContent(String id_campo, List<String> lista) {
-		WebElement element =  driver.findElement(By.id(id_campo));
+		WebElement element =  DriverFactory.getDriver().findElement(By.id(id_campo));
 		Select combo = new Select(element);
 		for (String textContent :  lista){
 			combo.deselectByVisibleText(textContent);
@@ -193,7 +181,7 @@ public class DSL {
 	 * @return
 	 */
 	public String obterContentTexto(String id_campo) {
-		return driver.findElement(By.id(id_campo)).getText();
+		return DriverFactory.getDriver().findElement(By.id(id_campo)).getText();
 	}
 	
 	/**
@@ -202,7 +190,7 @@ public class DSL {
 	 * @return
 	 */
 	public String obterContentTextoByClassPath(String classPath) {
-		return driver.findElement(By.xpath(classPath)).getText();
+		return DriverFactory.getDriver().findElement(By.xpath(classPath)).getText();
 	}
 	
 	/**
@@ -210,7 +198,7 @@ public class DSL {
 	 * @param id_campo
 	 */
 	public void clicarLink(String id_campo) {
-		driver.findElement(By.id(id_campo)).click();
+		DriverFactory.getDriver().findElement(By.id(id_campo)).click();
 	}
 
 	/**
@@ -225,7 +213,7 @@ public class DSL {
 		String attribute = "[@".concat(atributo).concat("=");
 		String valueAttribute = "\'"+valueAtributo+"\'".concat("]");
 		String xpath = component.concat(attribute).concat(valueAttribute);
-		driver.findElement(By.xpath(xpath)).click();
+		DriverFactory.getDriver().findElement(By.xpath(xpath)).click();
 		return null;
 	}
 
@@ -233,7 +221,7 @@ public class DSL {
 	 * @return
 	 */
 	public void clicarBotaoAlert(){
-		Alert alert = driver.switchTo().alert();
+		Alert alert = DriverFactory.getDriver().switchTo().alert();
 		alert.accept();
 	}
 	
@@ -241,7 +229,7 @@ public class DSL {
 	 * @return
 	 */
 	public Alert clickBotaoAlert(){
-		return  driver.switchTo().alert();
+		return  DriverFactory.getDriver().switchTo().alert();
 	}
 	
 	/**
@@ -250,13 +238,13 @@ public class DSL {
 	 * @return
 	 */
 	public WebElement getElementById(String id){
-		return driver.findElement(By.id(id));
+		return DriverFactory.getDriver().findElement(By.id(id));
 	}
 	
 	/****** JAVASCRIPT INI********/
 	
 	public Object executarJS(String comando, Object... param){
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getDriver();
 		// js.executeScript("alert('Testando js via Selenium')");
 		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escrito via JS'");
 		//js.executeScript("document.getElementById('elementosForm:sobreNome').type = 'radio'");
@@ -270,14 +258,14 @@ public class DSL {
 	 * @param id
 	 */
 	public void recuperarFrame(String id){
-		driver.switchTo().frame(id);
+		DriverFactory.getDriver().switchTo().frame(id);
 	}
 
 	/**
 	 * 
 	 */
 	public void retiraFocoFrame() {
-		driver.switchTo().defaultContent();
+		DriverFactory.getDriver().switchTo().defaultContent();
 	}
 
 	/**
@@ -285,7 +273,7 @@ public class DSL {
 	 * @param name
 	 */
 	public void inserirFocoPoupup(String name) {
-		driver.switchTo().window(name);
+		DriverFactory.getDriver().switchTo().window(name);
 	}
 
 	/****** xPath inicio ********/
@@ -295,7 +283,7 @@ public class DSL {
 	 * @param xPath
 	 */
 	public String recuperarTextoElementoWithXpath(String xPath) {
-		return driver.findElement(By.xpath(xPath)).getText();
+		return DriverFactory.getDriver().findElement(By.xpath(xPath)).getText();
 	}
 
 	/**
@@ -304,7 +292,7 @@ public class DSL {
 	 * @param texto
 	 */
 	public void escreveWithXpath(String xPath, String texto){
-		 driver.findElement(By.xpath(xPath)).sendKeys(texto);
+		 DriverFactory.getDriver().findElement(By.xpath(xPath)).sendKeys(texto);
 	}
 
 	/**
@@ -313,7 +301,7 @@ public class DSL {
 	 * @return
 	 */
 	public String recuperaTextoDigitadoWithXpath(String xPath) {
-		return driver.findElement(By.xpath(xPath)).getAttribute("value");
+		return DriverFactory.getDriver().findElement(By.xpath(xPath)).getAttribute("value");
 	}
 
 	/**
@@ -321,7 +309,7 @@ public class DSL {
 	 * @param xPath
 	 */
 	public void clicarBotaoWithXpath(String xPath) {
-		driver.findElement(By.xpath(xPath)).click();
+		DriverFactory.getDriver().findElement(By.xpath(xPath)).click();
 	}
 
 	/**
@@ -330,7 +318,7 @@ public class DSL {
 	 * @return
 	 */
 	public String obterValorAtributoValueWithXpath(String xPath) {
-	   return driver.findElement(By.xpath(xPath)).getAttribute("value");
+	   return DriverFactory.getDriver().findElement(By.xpath(xPath)).getAttribute("value");
 	}
 
 	/**
@@ -338,7 +326,7 @@ public class DSL {
 	 * @param xPath
 	 */
 	public void selecionarRadioWithXpath(String xPath) {
-		driver.findElement(By.xpath(xPath)).click();
+		DriverFactory.getDriver().findElement(By.xpath(xPath)).click();
 	}
 
 	/**
@@ -346,7 +334,7 @@ public class DSL {
 	 * @param xPath
 	 */
 	public void selecionarCheckBoxWithXpath(String xPath) {
-		driver.findElement(By.xpath(xPath)).click();
+		DriverFactory.getDriver().findElement(By.xpath(xPath)).click();
 	}
 	
 	/**
@@ -354,7 +342,7 @@ public class DSL {
 	 * @param by
 	 */
 	public void clicarRadio(By by) {
-		driver.findElement(by).click();
+		DriverFactory.getDriver().findElement(by).click();
 	}
 	
 	/**
@@ -363,7 +351,7 @@ public class DSL {
 	 * @return
 	 */
 	public boolean isRadioMarcado(String id){
-		return driver.findElement(By.id(id)).isSelected();
+		return DriverFactory.getDriver().findElement(By.id(id)).isSelected();
 	}
 	
 	/**
@@ -372,7 +360,7 @@ public class DSL {
 	 * @return
 	 */
 	public String obterTexto(By by) {
-		return driver.findElement(by).getText();
+		return DriverFactory.getDriver().findElement(by).getText();
 	}
 	
 	/**
@@ -394,7 +382,7 @@ public class DSL {
 	 */
 	public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela){
 		//procurar coluna do registro
-		WebElement tabela = driver.findElement(By.xpath("//*[@id='"+idTabela+"']"));
+		WebElement tabela = DriverFactory.getDriver().findElement(By.xpath("//*[@id='"+idTabela+"']"));
 		
 		int idColuna = obterIndiceColuna(colunaBusca, tabela);
 		
@@ -471,7 +459,7 @@ public class DSL {
 	 * @param id
 	 */
 	public void clicarBotao(String id) {
-		driver.findElement(By.id(id)).click();
+		DriverFactory.getDriver().findElement(By.id(id)).click();
 	}
 	
     /********* TextField e TextArea ************/
@@ -482,8 +470,8 @@ public class DSL {
 	 * @param texto
 	 */
 	public void escrever(By by, String texto){
-		driver.findElement(by).clear();
-		driver.findElement(by).sendKeys(texto);
+		DriverFactory.getDriver().findElement(by).clear();
+		DriverFactory.getDriver().findElement(by).sendKeys(texto);
 	}
 	
 	/**

@@ -1,9 +1,8 @@
 package br.com.teste.xpath;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-import br.com.teste.dsl.DSL;
+import br.com.teste.core.DSL;
 
 /**
  * Padrão PageObject - representa a tela a ser testada
@@ -14,8 +13,8 @@ public class UsarXpathPage {
 	
 private DSL dsl;
 	
-	public UsarXpathPage(WebDriver driver){
-		dsl = new DSL(driver);
+	public UsarXpathPage(){
+		dsl = new DSL();
 	}
 	
 	/**

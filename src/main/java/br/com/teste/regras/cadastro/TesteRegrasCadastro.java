@@ -1,9 +1,11 @@
 package br.com.teste.regras.cadastro;
 
 import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,17 +13,14 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.com.teste.browser.EnumBrowser;
 import br.com.teste.cadastro.TesteCadastroPage;
-import br.com.teste.dsl.DSL;
+import br.com.teste.core.DriverFactory;
 
 @RunWith(Parameterized.class)
 public class TesteRegrasCadastro {
 	
-	public WebDriver driver = null;
 	public TesteCadastroPage page = null;
 	
 	@Parameter
@@ -40,17 +39,13 @@ public class TesteRegrasCadastro {
 	
 	@Before
 	public void inicializa(){
-		//driver = new FirefoxDriver();
-		System.setProperty("webdriver.gecko.driver", "C:\\adriano\\libs\\driverBrowserSelenium/geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		page = new TesteCadastroPage(driver);
+		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		page = new TesteCadastroPage();
 	}
 	
 	@After
 	public void encerrar(){
-		//driver.quit();
+		DriverFactory.killDriver();
 	}
 	
 	@Parameters
