@@ -1,16 +1,16 @@
 package br.com.dantas.teste;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
-public class TestePrine {
+public class TestePrine extends BaseTest {
 	
 	private DSL dsl;
 
@@ -20,10 +20,6 @@ public class TestePrine {
 		dsl = new DSL();
 	}
 	
-	@After
-	public void finaliza(){
-		DriverFactory.killDriver();
-	}
 
 	@Test
 	public void deveInteragirComRadioPrime(){

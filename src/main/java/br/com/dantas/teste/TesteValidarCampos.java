@@ -3,7 +3,6 @@ package br.com.dantas.teste;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +11,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import br.com.dantas.page.CadastroPage;
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DriverFactory;
 
-public class TesteValidarCampos {
+public class TesteValidarCampos extends BaseTest {
 	
 	CadastroPage page = null;
 	
@@ -24,10 +24,6 @@ public class TesteValidarCampos {
 		page = new CadastroPage();
 	}
 	
-	@After
-	public void encerrar(){
-		DriverFactory.killDriver();
-	}
 
 	@Test
 	public void deveValidarNomeObrigatorio() {

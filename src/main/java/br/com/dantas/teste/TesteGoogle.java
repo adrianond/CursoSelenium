@@ -2,15 +2,13 @@ package br.com.dantas.teste;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.teste.browser.EnumBrowser;
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
 
-public class TesteGoogle {
+public class TesteGoogle extends BaseTest{
 	
 	
 	@Test
@@ -30,7 +28,7 @@ public class TesteGoogle {
 		//DriverFactory.getDriver().manage().window().setPosition(new Point(100, 100));
 		
 		//tamanho do browser
-		DriverFactory.getDriver(EnumBrowser.FIREFOX).manage().window().setSize(new Dimension(1200, 765));
+		DriverFactory.getDriver().manage().window().setSize(new Dimension(1200, 765));
 		
 		//acessa(abre) a pagina do google
 		DriverFactory.getDriver().get("http://www.google.com");
@@ -45,8 +43,6 @@ public class TesteGoogle {
 		
 		Assert.assertEquals("java - Pesquisa Google", DriverFactory.getDriver().getTitle());
 		
-		//fecha o browser(todas as abas)
-		DriverFactory.killDriver();
 	}
 
 }

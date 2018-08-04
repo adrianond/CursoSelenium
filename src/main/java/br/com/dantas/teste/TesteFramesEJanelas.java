@@ -1,6 +1,5 @@
 package br.com.dantas.teste;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,11 +7,12 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
 
-public class TesteFramesEJanelas {
+public class TesteFramesEJanelas extends BaseTest {
 	
 	DSL dsl = null;
 	
@@ -22,10 +22,6 @@ public class TesteFramesEJanelas {
 		dsl = new DSL();
 	}
 	
-	@After
-	public void encerrar(){
-		DriverFactory.killDriver();
-	}
 	
 	@Test
 	public void deveIntegarirFrames(){

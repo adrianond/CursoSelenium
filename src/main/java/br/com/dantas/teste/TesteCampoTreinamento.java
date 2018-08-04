@@ -1,14 +1,14 @@
 package br.com.dantas.teste;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-import br.com.teste.browser.EnumBrowser;
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
-public class TesteCampoTreinamento {
+public class TesteCampoTreinamento extends BaseTest {
 	
 	WebDriver driver = null;
 	private DSL dsl = null;
@@ -18,11 +18,6 @@ public class TesteCampoTreinamento {
 		//System.getProperty("user.dir") - retorna a raiz do projeto
 		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
-	}
-	
-	@After
-	public void encerrar(){
-		DriverFactory.killDriver();
 	}
 
 
@@ -115,13 +110,13 @@ public class TesteCampoTreinamento {
 			String texto = driver.findElement(By.className("facilAchar")).getText();
 			Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
 			System.out.println(texto);
-	   }
+	   }*/
 	   
 	   @Test
 	   public void testeJavaScript(){
 		   WebElement elemento = dsl.getElementById("elementosForm:nome");
 		   dsl.executarJS("arguments[0].style.border = arguments[1]", elemento, "solid 4px red");
-	   }*/
+	   }
 	   
 	   @Test
 	  public void deveClicarBotaoTabela(){

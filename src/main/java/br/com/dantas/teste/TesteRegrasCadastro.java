@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,10 +14,11 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 import br.com.dantas.page.CadastroPage;
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DriverFactory;
 
 @RunWith(Parameterized.class)
-public class TesteRegrasCadastro {
+public class TesteRegrasCadastro extends BaseTest {
 	
 	public CadastroPage page = null;
 	
@@ -42,10 +42,6 @@ public class TesteRegrasCadastro {
 		page = new CadastroPage();
 	}
 	
-	@After
-	public void encerrar(){
-		DriverFactory.killDriver();
-	}
 	
 	@Parameters
 	public static Collection<Object[]> getCollections(){
@@ -87,7 +83,7 @@ public class TesteRegrasCadastro {
 		assertEquals(msg, page.validarAvisoAlert());
 	}
 	
-	@Test
+	/*@Test
 	public void deveValidarRegras2(){
 		listaComidas.add("Frango");
 		listaComidas.add("Vegetariano");
@@ -108,6 +104,6 @@ public class TesteRegrasCadastro {
 		page.setEsporte(listaEsporte);
 		page.cadastrar();
 		assertEquals(msg, page.validarAvisoAlert());
-	}
+	}*/
 
 }

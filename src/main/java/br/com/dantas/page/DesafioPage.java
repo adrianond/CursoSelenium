@@ -1,14 +1,9 @@
 package br.com.dantas.page;
 
-import br.com.teste.core.DSL;
+import br.com.teste.core.BasePage;
 
-public class DesafioPage {
+public class DesafioPage  extends BasePage {
 
-	private DSL dsl = null;
-
-	public DesafioPage() {
-		dsl = new DSL();
-	}
 
 	/**
 	 * 

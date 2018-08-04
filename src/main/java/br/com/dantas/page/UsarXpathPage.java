@@ -1,21 +1,13 @@
 package br.com.dantas.page;
 
-import org.openqa.selenium.WebDriver;
-
-import br.com.teste.core.DSL;
+import br.com.teste.core.BasePage;
 
 /**
  * Padrão PageObject - representa a tela a ser testada
  * @author adriano
  *
  */
-public class UsarXpathPage {
-	
-private DSL dsl;
-	
-	public UsarXpathPage(){
-		dsl = new DSL();
-	}
+public class UsarXpathPage  extends BasePage {
 	
 	/**
 	 * 

@@ -1,14 +1,14 @@
 package br.com.dantas.teste;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import br.com.dantas.page.DesafioPage;
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DriverFactory;
 
-public class TesteDesafio {
+public class TesteDesafio extends BaseTest{
 	
 	private DesafioPage page = null;
 	
@@ -18,10 +18,6 @@ public class TesteDesafio {
 		page = new DesafioPage();
 	}
 	
-	@After
-	public void encerraCasoTeste(){
-		
-	}
 	
 	@Test
 	public void executarCasoTeste(){

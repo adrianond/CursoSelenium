@@ -1,6 +1,5 @@
 package br.com.dantas.teste;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,10 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
-public class TesteAjax {
+public class TesteAjax extends BaseTest {
 	
 	private DSL dsl;
 
@@ -19,11 +19,6 @@ public class TesteAjax {
 	public void inicializa(){
 		DriverFactory.getDriver().get("https://www.primefaces.org/showcase/ui/ajax/basic.xhtml");
 		dsl = new DSL();
-	}
-	
-	@After
-	public void finaliza(){
-		DriverFactory.killDriver();
 	}
 
 	@Test

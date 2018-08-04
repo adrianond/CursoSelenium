@@ -2,7 +2,6 @@ package br.com.dantas.teste;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -10,10 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
-public class TesteSincronismo {
+public class TesteSincronismo extends BaseTest {
 
 	private WebDriver driver;
 	private DSL dsl;
@@ -24,10 +24,6 @@ public class TesteSincronismo {
 		dsl = new DSL();
 	}
 	
-	@After
-	public void finaliza(){
-        DriverFactory.killDriver();
-	}
 	
 	@Test
 	public void deveUtilizarEsperaFixa() throws InterruptedException{

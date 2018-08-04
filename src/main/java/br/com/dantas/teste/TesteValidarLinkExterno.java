@@ -6,10 +6,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
-public class TesteValidarLinkExterno {
+public class TesteValidarLinkExterno extends BaseTest {
 	
 	private DSL dsl = null;
 	
@@ -18,6 +19,8 @@ public class TesteValidarLinkExterno {
 		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/validarLinkExterno.html");
 		dsl = new DSL();
 	}
+	
+	
 	
 	@Test
 	public void testeIntegarircomLinks() throws InterruptedException {

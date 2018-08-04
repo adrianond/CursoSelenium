@@ -1,15 +1,15 @@
 package br.com.dantas.teste;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DSL;
 import br.com.teste.core.DriverFactory;
 
-public class TestAlert {
+public class TestAlert extends BaseTest{
 	
 	private DSL dsl = null;
 	
@@ -19,10 +19,6 @@ public class TestAlert {
 		dsl = new DSL();
 	}
 	
-	@After
-	public void finalizar(){
-		//driver.quit();
-	}
 
 	@Test
 	public void testeIntegarirComAlertSimples() {

@@ -8,11 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.dantas.page.CadastroPage;
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DriverFactory;
 
 
 
-public class TesteCadastro {
+public class TesteCadastro extends BaseTest {
 	
 	private CadastroPage page = null;
 	

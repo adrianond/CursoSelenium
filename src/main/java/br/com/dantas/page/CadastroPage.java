@@ -6,15 +6,10 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
+import br.com.teste.core.BasePage;
 import br.com.teste.core.DSL;
 
-public class CadastroPage {
-	
-	private DSL dsl;
-	
-	public CadastroPage(){
-		dsl = new DSL();
-	}
+public class CadastroPage extends BasePage {
 	
 	/**
 	 * 

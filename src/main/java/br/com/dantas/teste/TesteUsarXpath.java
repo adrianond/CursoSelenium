@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import br.com.dantas.page.UsarXpathPage;
+import br.com.teste.core.BaseTest;
 import br.com.teste.core.DriverFactory;
 
 
@@ -16,7 +17,7 @@ import br.com.teste.core.DriverFactory;
  * @author adriano
  *
  */
-public class TesteUsarXpath {
+public class TesteUsarXpath extends BaseTest {
 	
 	WebDriver driver = null;
 	UsarXpathPage page =null;
