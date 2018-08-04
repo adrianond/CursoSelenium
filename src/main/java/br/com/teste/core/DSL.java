@@ -8,7 +8,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import br.com.teste.validar.link.externo.GerarEventos;
 
 public class DSL {
 	
@@ -208,13 +207,12 @@ public class DSL {
 	 * @param valueAtributo
 	 * @return
 	 */
-	public GerarEventos recuperarButton(String componente, String atributo, String valueAtributo) {
+	public void recuperarButton(String componente, String atributo, String valueAtributo) {
 		String component = "//".concat(componente);
 		String attribute = "[@".concat(atributo).concat("=");
 		String valueAttribute = "\'"+valueAtributo+"\'".concat("]");
 		String xpath = component.concat(attribute).concat(valueAttribute);
 		DriverFactory.getDriver().findElement(By.xpath(xpath)).click();
-		return null;
 	}
 
 	/**

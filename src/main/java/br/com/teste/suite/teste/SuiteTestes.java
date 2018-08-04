@@ -4,14 +4,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import br.com.teste.campo.treinamento.TesteCampoTreinamento;
-import br.com.teste.regras.cadastro.TesteRegrasCadastro;
-import br.com.teste.validar.campos.ValidarCampos;
+import br.com.dantas.teste.TesteCampoTreinamento;
+import br.com.dantas.teste.TesteValidarCampos;
 
 @RunWith(Suite.class)
 @SuiteClasses({
 	//TesteRegrasCadastro.class,
-	ValidarCampos.class,
+	TesteValidarCampos.class,
 	TesteCampoTreinamento.class
 })
 public class SuiteTestes {
